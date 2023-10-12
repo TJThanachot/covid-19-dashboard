@@ -1,12 +1,34 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
 import "./App.css";
+import axios from "axios";
+import SideBar from "./components/SideBar";
+import Home from "./components/Home";
+import { useMain } from "./contexts/mainContext";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { page, setPage } = useMain();
+  return (
+    <div className="flex h-[auto] w-[100vw]">
+      <SideBar />
 
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+      {page === "Global Situation" ? <Home /> : null}
+    </div>
+  );
 }
 
 export default App;
+
+{
+  /* <button
+        className="bg-red-500"
+        onClick={async () => {
+          // const result = await axios.get("https://disease.sh/v3/covid-19/all");
+          const result = await axios.get(
+            "https://disease.sh/v3/covid-19/historical/all?lastdays=all"
+          );
+          console.log(result.data);
+        }}
+      >
+        kkkkk
+      </button> */
+}
