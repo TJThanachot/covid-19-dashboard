@@ -1,2 +1,9 @@
 
 
+body {
+    background: #1d2634;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    min-height: 100vh;
+}
