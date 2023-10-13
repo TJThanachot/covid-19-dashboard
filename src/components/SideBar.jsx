@@ -14,7 +14,7 @@ function SideBar() {
   return (
     <>
       <aside
-        className={`w-[25%] min-w-[15rem] h-[100vh] bg-[#C8BCAC] flex flex-col items-center  pt-10
+        className={`w-[25%]  max-sm:absolute max-sm:z-10 min-w-[15rem] min-h-[100vh] bg-[#C8BCAC] flex flex-col items-center  pt-10
         transition-all duration-500  ${
           !open ? "left-0" : "absolute left-[-200%]"
         }`}

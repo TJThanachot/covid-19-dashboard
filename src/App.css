@@ -4,6 +4,7 @@ body {
     background: #FAEBD7;
     color: #8B0000;
     font-family: 'Montserrat', sans-serif;
-    width: 100%;
+    
+    min-width: 100vw;
     min-height: 100vh;
 }
