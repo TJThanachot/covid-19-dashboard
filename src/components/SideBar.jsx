@@ -6,14 +6,15 @@ import {
   AiOutlineTable,
   AiFillAppstore,
 } from "react-icons/ai";
+import { FaDisease } from "react-icons/fa";
 function SideBar() {
-  const [bg, setBg] = useState(0);
-  const { open, setOpen } = useMain();
+  const [bg, setBg] = useState(1);
+  const { open, setOpen, page, setPage } = useMain();
 
   return (
     <>
       <aside
-        className={`card w-[25%] min-w-[15rem] h-[100vh] bg-[#263043] flex flex-col items-center  pt-10
+        className={`w-[25%] min-w-[15rem] h-[100vh] bg-[#C8BCAC] flex flex-col items-center  pt-10
         transition-all duration-500  ${
           !open ? "left-0" : "absolute left-[-200%]"
         }`}
@@ -36,26 +37,41 @@ function SideBar() {
         <button
           onClick={() => {
             setBg(1);
+            setPage("Global Situation");
           }}
           className={`transition-all font-semibold h-[4rem] duration-300  hover:translate-x-7 menu 
-        w-full pl-[20%] text-2xl flex flex-row items-center gap-3 hover:bg-gray-300 rounded-md  ${
-          bg === 1 ? "bg-gray-500 hover:bg-gray-500" : ""
+        w-full pl-[20%] text-2xl flex flex-row items-center gap-3 hover:bg-[#FAEBD7]   ${
+          bg === 1 ? "bg-[#FAEBD7] hover:bg-[#FAEBD7]" : ""
         }`}
         >
-          <AiOutlineBarChart />
-          Chart
+          <FaDisease />
+          Global
         </button>
         <button
           onClick={() => {
             setBg(2);
+            setPage("Table");
           }}
           className={`transition-all font-semibold h-[4rem] duration-300  hover:translate-x-7 menu 
-        w-full pl-[20%] text-2xl flex flex-row items-center gap-3 hover:bg-gray-300 rounded-md  ${
-          bg === 2 ? "bg-gray-500 hover:bg-gray-500" : ""
+        w-full pl-[20%] text-2xl flex flex-row items-center gap-3 hover:bg-[#FAEBD7]   ${
+          bg === 2 ? "bg-[#FAEBD7] hover:bg-[#FAEBD7]" : ""
         }`}
         >
           <AiOutlineTable />
           Table
+        </button>
+        <button
+          onClick={() => {
+            setBg(3);
+            setPage("Chart");
+          }}
+          className={`transition-all font-semibold h-[4rem] duration-300  hover:translate-x-7 menu 
+        w-full pl-[20%] text-2xl flex flex-row items-center gap-3 hover:bg-[#FAEBD7]   ${
+          bg === 3 ? "bg-[#FAEBD7] hover:bg-[#FAEBD7]" : ""
+        }`}
+        >
+          <AiOutlineBarChart />
+          Chart
         </button>
       </aside>
 
