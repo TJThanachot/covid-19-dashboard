@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import SideBar from "./components/SideBar";
-import Table from "./components/Table";
+import TableCom from "./components/TableCom";
 import Chart from "./components/Chart";
 import Home from "./components/Home";
 import { useMain } from "./contexts/mainContext";
@@ -10,13 +10,13 @@ import { useMain } from "./contexts/mainContext";
 function App() {
   const { page, setPage } = useMain();
   return (
-    <div className="flex h-[auto] w-[100vw]">
+    <div className="flex h-[auto] w-[auto]">
       <SideBar />
 
       {page === "Global Situation" ? (
         <Home />
       ) : page === "Table" ? (
-        <Table />
+        <TableCom />
       ) : page === "Chart" ? (
         <Chart />
       ) : null}

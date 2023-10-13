@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-
+import moment from "moment";
 const MainContext = React.createContext();
 
 function MainProvider(props) {
@@ -10,6 +10,23 @@ function MainProvider(props) {
   const [percentData, setPercentData] = useState([]);
   const [mainDataForPie, setMainDataForPie] = useState({});
   const [groupDataByYear, setGroupDataByYear] = useState({});
+  const [dataForTable, setDataForTable] = useState([]);
+  const [dateFilter, setDateFilter] = useState([]);
+
+  const getDateFilter = () => {
+    const array = [];
+    for (let y = 0; y < 4; y++) {
+      for (let i = 1; i < 13; i++) {
+        array.push({
+          text: `${i > 9 ? i : "0" + i}-202${y}`,
+          value: `${i > 9 ? i : "0" + i}-202${y}`,
+        });
+      }
+    }
+    setDateFilter(array);
+    // console.log(array);
+  };
+
   const getMainData = async () => {
     const result = await axios.get("https://disease.sh/v3/covid-19/all");
     const newResult = {
@@ -86,6 +103,32 @@ function MainProvider(props) {
 
     setGroupDataByYear(year);
   };
+
+  const getHistoricalTable = async () => {
+    const result = await axios.get(
+      "https://disease.sh/v3/covid-19/historical/all?lastdays=all"
+    );
+    const newResult = [];
+
+    let i = 0;
+    for (let key in result.data.cases) {
+      newResult.push({
+        key: i,
+        date: moment(key).format("DD-MM-YYYY"),
+        cases: result.data.cases[key],
+      });
+      i++;
+    }
+
+    let i2 = 0;
+    for (let key in result.data.deaths) {
+      newResult[i2].deaths = result.data.deaths[key];
+      newResult[i2].recovered = newResult[i2].cases - newResult[i2].deaths;
+      i2++;
+    }
+    // console.log(newResult);
+    setDataForTable(newResult);
+  };
   return (
     <MainContext.Provider
       value={{
@@ -100,6 +143,10 @@ function MainProvider(props) {
         mainDataForPie,
         getHistorical,
         groupDataByYear,
+        getHistoricalTable,
+        dataForTable,
+        getDateFilter,
+        dateFilter,
       }}
     >
       {props.children}

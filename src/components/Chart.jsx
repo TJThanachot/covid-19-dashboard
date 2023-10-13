@@ -9,6 +9,8 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Bar,
+  BarChart,
 } from "recharts";
 
 import { useMain } from "../contexts/mainContext";
@@ -18,7 +20,7 @@ function Chart() {
   useEffect(() => {
     getHistorical();
   }, []);
-  console.log(groupDataByYear);
+  // console.log(groupDataByYear);
   const data = [
     {
       name: "2020",
@@ -72,6 +74,30 @@ function Chart() {
             <Line type="monotone" dataKey="recovered" stroke="#22c55e" />
             <Line type="monotone" dataKey="deaths" stroke="#ef4444" />
           </LineChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="w-[70%] h-[30rem] mt-[5rem]">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            width={500}
+            height={300}
+            data={data}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 80,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="cases" fill="#2563eb" />
+            <Bar dataKey="recovered" fill="#22c55e" />
+            <Bar dataKey="deaths" fill="#ef4444" />
+          </BarChart>
         </ResponsiveContainer>
       </div>
     </div>
