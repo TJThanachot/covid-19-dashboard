@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import SideBar from "./components/SideBar";
+import Table from "./components/Table";
+import Chart from "./components/Chart";
 import Home from "./components/Home";
 import { useMain } from "./contexts/mainContext";
 
@@ -11,7 +13,13 @@ function App() {
     <div className="flex h-[auto] w-[100vw]">
       <SideBar />
 
-      {page === "Global Situation" ? <Home /> : null}
+      {page === "Global Situation" ? (
+        <Home />
+      ) : page === "Table" ? (
+        <Table />
+      ) : page === "Chart" ? (
+        <Chart />
+      ) : null}
     </div>
   );
 }
